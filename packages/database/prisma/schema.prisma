@@ -7,7 +7,7 @@ generator client {
 
 datasource db {
   provider = "sqlite"
-  url      = env("DATABASE_URL")
+  url      = "file:./dev.db"
 }
 
 model User {
@@ -16,23 +16,15 @@ model User {
   name    String?
   recipes Recipe[]
   authoredComments Comments[]
-  // follower Follower @relation(fields: [followerId], references: [id])
-  // followerId Int
+  followers User[] @relation(name: "Follower")
+  follows User[] @relation(name: "Follower")
 }
-
-// model Follower {
-//   id Int @id @default(autoincrement())
-//   user User @relation(fields: [userId], references: [id])
-//   userId Int
-
-  
-// }
 
 model Recipe {
   id            Int          @id @default(autoincrement())
   name          String
   ingredients   Ingredient[]
-  author        User         @relation(fields: [authorId], references: [id])
+  author        User         @relation(fields: [authorId], references: [id], onDelete: Cascade)
   authorId      Int
   comments      Comments[]
 }
@@ -53,8 +45,8 @@ model Tag {
 model Comments {
   id      Int      @id @default(autoincrement())
   text    String
-  author  User     @relation(fields: [authorId], references: [id])
+  author  User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
   authorId Int
-  recipe  Recipe   @relation(fields: [recipeId], references: [id])
+  recipe  Recipe   @relation(fields: [recipeId], references: [id], onDelete: Cascade)
   recipeId Int
 }
