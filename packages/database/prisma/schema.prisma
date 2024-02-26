@@ -17,29 +17,16 @@ model User {
   recipes Recipe[]
   authoredComments Comments[]
   followers User[] @relation(name: "Follower")
-  follows User[] @relation(name: "Follower")
+  follows User[]   @relation(name: "Follower")
 }
 
 model Recipe {
   id            Int          @id @default(autoincrement())
   name          String
-  ingredients   Ingredient[]
+  description   String       @default("")
   author        User         @relation(fields: [authorId], references: [id], onDelete: Cascade)
   authorId      Int
   comments      Comments[]
-}
-
-model Ingredient {
-  id      Int      @id @default(autoincrement())
-  name    String
-  recipes Recipe[]
-  tags    Tag[]
-}
-
-model Tag {
-  id      Int      @id @default(autoincrement())
-  name    String
-  ingredients Ingredient[]
 }
 
 model Comments {
