@@ -15,7 +15,7 @@ model User {
   email   String   @unique
   name    String?
   recipes Recipe[]
-  authoredComments Comments[]
+  authoredComments Comment[]
   followers User[] @relation(name: "Follower")
   follows User[]   @relation(name: "Follower")
 }
@@ -26,14 +26,16 @@ model Recipe {
   description   String       @default("")
   author        User         @relation(fields: [authorId], references: [id], onDelete: Cascade)
   authorId      Int
-  comments      Comments[]
+  comments      Comment[]
+  creationDate  DateTime     @default(now())
 }
 
-model Comments {
+model Comment {
   id      Int      @id @default(autoincrement())
   text    String
   author  User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
   authorId Int
   recipe  Recipe   @relation(fields: [recipeId], references: [id], onDelete: Cascade)
   recipeId Int
+  creationDate  DateTime     @default(now())
 }
