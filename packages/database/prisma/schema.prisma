@@ -18,6 +18,7 @@ model User {
   authoredComments Comment[]
   followers User[] @relation(name: "Follower")
   follows User[]   @relation(name: "Follower")
+  creationDate  DateTime     @default(now())
 }
 
 model Recipe {

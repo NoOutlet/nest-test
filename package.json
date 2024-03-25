@@ -4,6 +4,9 @@
     "test": "turbo run test",
     "build": "turbo run build",
     "dev": "turbo run dev",
+    "migrate": "turbo run migrate",
+    "populate": "turbo run populate",
+    "generate": "turbo run generate",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },

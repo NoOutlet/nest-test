@@ -79,3 +79,30 @@ Learn more about the power of Turborepo:
 - [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
 - [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
 - [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+
+  // RECIPES
+
+  // get a recipe by id -> returns everything
+
+  // get a list of recipes sorting by time -> returns name, ID and author
+
+  // get all recipes by an author sorting by time -> returns name, ID and author
+
+  // get all recipes by all your followed authors sorting by time -> returns name, ID and author
+
+  // add comment to recipe by author id and recipe id, and comment text
+
+  // create a recipe with author, name
+
+  // USERS
+
+  // get user by id -> returns everything
+
+  // update user name and email
+
+  // follow a user using your id and their id
+
+  // create a user
+
+
+  // OAUTH??????

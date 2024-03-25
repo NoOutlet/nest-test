@@ -14,6 +14,10 @@
     "generate": {
       "cache": false
     },
+    "populate": {
+      "cache": false,
+      "dependsOn": ["generate"]
+    },
     "migrate": {}
   }
 }

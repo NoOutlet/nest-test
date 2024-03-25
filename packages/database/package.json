@@ -4,11 +4,14 @@
   "dependencies": {
     "@prisma/client": "latest"
   },
+  "type": "module",
   "devDependencies": {
     "prisma": "5.6.0"
   },
   "scripts": {
     "generate": "prisma generate",
+    "populate": "node ./populateTestData.ts",
     "migrate": "prisma migrate dev"
+
   }
 }
