@@ -9,13 +9,13 @@ const prisma = new PrismaClient()
 app.get('/recipes', async (req, res) => {
 
   const recipes = await prisma.recipe.findMany({
-    orderBy: [
-      {
-        creationDate: 'desc',
-        id: 'desc'
+    // orderBy: [
+    //   {
+    //     // creationDate: 'desc',
+    //     id: 'desc'
 
-      }
-    ],
+    //   }
+    // ],
   })
 
   res.send(recipes)
