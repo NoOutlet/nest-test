@@ -1,6 +1,7 @@
-import { Prisma, PrismaClient } from "@prisma/client";
+const { PrismaClient } = require('@prisma/client')
 
-const prisma = new PrismaClient();
+
+const client = new PrismaClient();
 
 const users = [
   {
@@ -23,7 +24,6 @@ const users = [
   },
 ];
 
-// TODO create sample data to populate the database
 const recipes = [
   {
     id: 1,
@@ -97,18 +97,19 @@ const follows = [
 ];
 
 async function main() {
-  users.forEach((data) => prisma.user.create({ data }))
-  recipes.forEach((data) => prisma.recipe.create({ data }))
-  comments.forEach(data => prisma.comment.create({ data }))
-  follows.forEach(({A, B}) => prisma.user.update({ where: { id: A }, data: { follows: { connect: { id: B } } } }))
+  console.log("Creating Drama");
+  users.forEach((data) => client.user.create({ data }))
+  recipes.forEach((data) => client.recipe.create({ data }))
+  comments.forEach(data => client.comment.create({ data }))
+  follows.forEach(({A, B}) => client.user.update({ where: { id: A }, data: { follows: { connect: { id: B } } } }))
 }
 
 main()
   .then(async () => {
-    await prisma.$disconnect();
+    await client.$disconnect();
   })
   .catch(async (e) => {
     console.error(e);
-    await prisma.$disconnect();
+    await client.$disconnect();
     process.exit(1);
   });
