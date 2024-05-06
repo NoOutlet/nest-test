@@ -1,7 +1,6 @@
-const { PrismaClient } = require('@prisma/client')
+const { PrismaClient } = require("@prisma/client");
 
-
-const client = new PrismaClient2();
+const client = new PrismaClient();
 
 const users = [
   {
@@ -35,14 +34,16 @@ const recipes = [
   {
     id: 2,
     name: "Bob's Spaghetti",
-    description: "Hi, my name is Bob and I love spaghetti. Here's my recipe! The ingredients are: 1. Spaghetti, 2. Spagetti Sauce",
+    description:
+      "Hi, my name is Bob and I love spaghetti. Here's my recipe! The ingredients are: 1. Spaghetti, 2. Spagetti Sauce",
     authorId: 2,
     creationDate: "2024-03-28T21:07:43.000Z",
   },
   {
     id: 3,
     name: "Alice's Original Spaghetti",
-    description: "Hi, my name is Bob and I love spaghetti. Here's my recipe! The ingredients are: 1. Spaghetti, 2. Spagetti Sauce, 3. Love",
+    description:
+      "Hi, my name is Bob and I love spaghetti. Here's my recipe! The ingredients are: 1. Spaghetti, 2. Spagetti Sauce, 3. Love",
     authorId: 1,
     creationDate: "2024-03-28T21:08:48.000Z",
   },
@@ -99,22 +100,23 @@ const follows = [
 async function main() {
   console.log("Creating Drama");
   const alice = await client.user.upsert({
-    where: { email: 'alice@prisma.io' },
+    where: { email: "alice@prisma.io" },
     update: {},
     create: {
-      email: 'alice@prisma.io',
-      name: 'Alice',
+      email: "alice@prisma.io",
+      name: "Alice",
       creationDate: new Date("2024-03-25T20:32:44.000Z"),
       recipes: {
         create: {
           name: "Alice's Original Spaghetti",
-          description: "Hi, my name is Bob and I love spaghetti. Here's my recipe! The ingredients are: 1. Spaghetti, 2. Spagetti Sauce, 3. Love",
+          description:
+            "Hi, my name is Bob and I love spaghetti. Here's my recipe! The ingredients are: 1. Spaghetti, 2. Spagetti Sauce, 3. Love",
           creationDate: "2024-03-28T21:08:48.000Z",
         },
       },
     },
   });
-  console.log(alice)
+  console.log(alice);
   // WHY DOES THIS NOT WORK?
   // users.forEach((data) => client.user.create({ data }))
   // recipes.forEach((data) => client.recipe.create({ data }))
