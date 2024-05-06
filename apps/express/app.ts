@@ -1,10 +1,10 @@
 const express = require('express')
-const { PrismaClient } = require('@prisma/client')
+const { PrismaClient: PrismaClient2 } = require('@prisma/client')
 
 const app = express()
 const port = 3000
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient2()
 
 app.get('/recipes', async (req, res) => {
 
